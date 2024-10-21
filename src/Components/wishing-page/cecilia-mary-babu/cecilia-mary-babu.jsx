@@ -12,17 +12,33 @@ import ConfirmModal from "./confirm-modal.jsx";
 import CreateWishModal from "./create-wish-modal.jsx";
 import RenderWishes from "./render-wishes.jsx";
 import { database } from "../../../modules/firestore/connectFirestore.js";
+import HomePageLoading from "../../loading/home-page-loading.jsx";
+import getRandomBgImg from "./background-image-imports.js";
 
 function CeciliaMaryBabu() {
+  setTimeout(() => {
+    setMessage(
+      "Connection Timeout. Check your network Connection or contact Support"
+    );
+  }, 20000);
+
   const [wishData, setWishData] = useState({
     text: "",
     creator: "",
     profilePic: "",
   });
   const [isConfirmMode, setIsConfirmMode] = useState(false);
+  const [message, setMessage] = useState("Connecting");
+  const [loading, setLoading] = useState(true);
+  const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {
-    console.log("Data updated: ", wishData);
+    const bgImg = getRandomBgImg();
+    setBackgroundImage(bgImg);
+  }, []);
+
+  useEffect(() => {
+    // console.log("Data updated: ", wishData);
     if (database) {
       console.log("Successfully created database instance.");
     } else {
@@ -118,16 +134,23 @@ function CeciliaMaryBabu() {
   }
 
   return (
-    <div className="">
+    <div className="bg-dark text-light">
+      <div id="homePageLoader">
+        <HomePageLoading message={message} />
+      </div>
       <div className="body">
         <div className="header mx-auto text-center">
           <p className="imogy text-center">{getRandomImogy()}</p>
         </div>
         <div
           className="wishes no-scrollbar overflow-auto no-scrollbar"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
           id="wishes"
         >
-          <RenderWishes renderProfilePic={renderProfilePic} />
+          <RenderWishes
+            renderProfilePic={renderProfilePic}
+            setMessage={setMessage}
+          />
         </div>
       </div>
 
