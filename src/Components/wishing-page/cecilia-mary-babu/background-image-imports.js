@@ -33,7 +33,7 @@ let bgImgs = [
 ];
 
 function getRandomBgImg() {
-  let randomIndex = Math.floor(Math.random() * 10) % 4;
+  let randomIndex = Math.floor(Math.random() * 4);
   console.log(randomIndex);
   return bgImgs[randomIndex];
 }
