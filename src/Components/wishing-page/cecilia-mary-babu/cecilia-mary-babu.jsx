@@ -138,10 +138,20 @@ function CeciliaMaryBabu() {
       <div id="homePageLoader">
         <HomePageLoading message={message} />
       </div>
-      <div className="body">
-        <div className="header mx-auto text-center">
-          <p className="imogy text-center">{getRandomImogy()}</p>
+      <header className="birthday-header">
+        <div className="header-content">
+          <h1 className="birthday-title">Happy Birthday Cecilia!</h1>
+          <p className="birthday-subtitle">Celebrate with love and joy</p>
+          <div className="birthday-decorations">
+            <span className="decoration">🎉</span>
+            <span className="decoration">🎂</span>
+            <span className="decoration">🎈</span>
+            <span className="decoration">🎁</span>
+            <span className="decoration">🥳</span>
+          </div>
         </div>
+      </header>
+      <div className="body">
         <div
           className="wishes no-scrollbar overflow-auto no-scrollbar"
           style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -159,6 +169,7 @@ function CeciliaMaryBabu() {
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#wishModal"
+        style={{ zIndex: 3 }}
       >
         Wish Em!
       </button>
