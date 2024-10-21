@@ -18,10 +18,7 @@ function AppRoutes() {
             path="/wishing/my-pages/edit/:id"
             element={<EditWishingPage />}
           />
-          <Route
-            path="/wishme/cecilia-mary-babu"
-            element={<CeciliaMaryBabu />}
-          />
+          <Route path="/wishme/:pageId" element={<CeciliaMaryBabu />} />
         </Routes>
       </BrowserRouter>
     </div>
