@@ -9,7 +9,6 @@ function RenderWishes(props) {
   useEffect(() => {
     async function fetchWishes() {
       let fetchedWishes = await getAllWishes();
-      // console.log(fetchedWishes);
       setWishes(fetchedWishes);
     }
     fetchWishes().then(() => {
@@ -21,13 +20,15 @@ function RenderWishes(props) {
     });
   }, []);
 
-  return wishes.map((wish, index) => {
-    return (
-      <div className="col-9 col-md-5 m-3 d-inline-block" key={index}>
-        <WishItemcard renderProfilePic={renderProfilePic} wish={wish} />
-      </div>
-    );
-  });
+  return (
+    <div className="row">
+      {wishes.map((wish, index) => (
+        <div className="col-11 col-md-5 m-2 mx-auto" key={index}>
+          <WishItemcard renderProfilePic={renderProfilePic} wish={wish} />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default RenderWishes;
