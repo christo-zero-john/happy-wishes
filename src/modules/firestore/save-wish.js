@@ -1,5 +1,6 @@
 import { database } from "./connectFirestore";
-import { collection, doc, addDoc, getDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+import getAllWishes from "./get-all-wishes";
 
 async function saveWish(newWish) {
   let pageId = "cecilia-mary-babu";
@@ -23,12 +24,6 @@ async function saveWish(newWish) {
       console.log("Error saving new wish to database");
     }
   }
-}
-
-async function getAllWishes(pageId) {
-  let allWishesRef = doc(database, `wishing-pages/${pageId}`);
-  let allWishesSnapshot = await getDoc(allWishesRef);
-  return allWishesSnapshot.data().wishes;
 }
 
 export default saveWish;
