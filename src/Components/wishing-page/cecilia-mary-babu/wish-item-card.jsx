@@ -1,21 +1,19 @@
+import "../../../styles/wish-item-card.css";
+
 function WishItemcard(props) {
   let { renderProfilePic, wish } = props;
 
-  console.log("Rendering Wish: ", wish);
-
   return (
-    <div className="card">
-      <div className="card-header">
+    <div className="wish-item-card">
+      <div className="wish-item-card-header">
         {renderProfilePic(wish.profilePic)}
-        <p className="d-inline mx-3">{wish.creator}</p>
+        <h2 className="wish-item-card-title">{wish.creator}</h2>
       </div>
-      <div className="card-body">
-        <p className="card-text">{wish.text}</p>
+      <div className="wish-item-card-content">
+        <p className="wish-item-card-text">{wish.text}</p>
       </div>
     </div>
   );
 }
-
-
 
 export default WishItemcard;
