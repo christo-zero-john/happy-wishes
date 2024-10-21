@@ -1,0 +1,119 @@
+.item-card {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 12px;
+  background-color: #00fb4b5f;
+}
+
+.item-card-header {
+  position: relative;
+  top: -25px;
+}
+
+.profile-pic {
+  width: 80px;
+  background-color: #fff;
+  border: 1px solid red;
+  border-radius: 8px;
+  padding: 5px;
+  transition: all 0.4s;
+}
+
+.profile-pic:hover {
+  scale: 1.1;
+  border: none;
+  background-color: #bec5f9;
+  /* animation: profile-pic-animation 3s ease-in-out 1s infinite normal forwards; */
+}
+
+.item-card-creator {
+  color: purple;
+  font-size: 24px;
+  position: relative;
+  top: 10px;
+  transition: all 0.5s;
+}
+
+.item-card-creator:hover {
+  color: #2b8000;
+  letter-spacing: 5px;
+}
+
+.wish-item-card {
+  background: #ffffff1a;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 8px 32px 0 #1f26875e;
+  border: 1px solid #ffffff2e;
+  transition: all 0.3s ease;
+}
+
+.wish-item-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+.wish-item-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.wish-item-card-header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.wish-item-card-title {
+  font-size: 18px;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.wish-item-card-content {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.wish-item-card-text {
+  font-size: 16px;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.wish-item-card-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wish-item-card-button {
+  background: linear-gradient(45deg, #ff6b6b, #feca57);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wish-item-card-button:hover {
+  background: linear-gradient(45deg, #feca57, #ff6b6b);
+  transform: scale(1.05);
+}
+
+.wish-item-card-date {
+  font-size: 14px;
+  color: #bdc3c7;
+}
