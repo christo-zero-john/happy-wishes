@@ -1,12 +1,19 @@
-import React from "react";
 import WishItemcard from "./wish-item-card";
-import getAllWishes from "../../../modules/localStore/get-all-wishes";
+import getAllWishes from "../../../modules/firestore/get-all-wishes";
+import { useEffect, useState } from "react";
 
 function RenderWishes(props) {
-  let {renderProfilePic } = props;
+  let { renderProfilePic } = props;
+  const [wishes, setWishes] = useState([]);
 
-  let wishes = getAllWishes();
-  console.log(wishes);
+  useEffect(() => {
+    async function fetchWishes() {
+      let fetchedWishes = await getAllWishes();
+      console.log(fetchedWishes);
+      setWishes(fetchedWishes);
+    }
+    fetchWishes();
+  },[]);
 
   return wishes.map((wish, index) => {
     return (
