@@ -2,21 +2,111 @@
   height: 100vh;
   border-radius: 10px 10px 0 0;
   background-size: cover;
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
+  overflow: auto; /* Changed from 'hidden' to allow scrolling */
+}
+
+.wishes::before {
+  content: "";
+  position: fixed; /* Changed from 'absolute' to 'fixed' */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* Dark shade overlay */
+  backdrop-filter: blur(5px); /* Small blur effect */
+  z-index: 1;
+}
+
+.wishes > * {
+  position: relative;
+  z-index: 2;
 }
 
 @keyframes imogyDance {
   0% {
-    scale: 1;
-    transform: rotateX(30deg);
+    scale: 0.75;
+    transform: rotateX(22.5deg);
   }
   50% {
-    scale: 1.5;
+    scale: 1.125;
     transform: rotateX(0deg);
   }
   100% {
-    scale: 1;
-    transform: rotateX(30deg);
+    scale: 0.75;
+    transform: rotateX(22.5deg);
+  }
+}
+
+.birthday-header {
+  background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+  padding: 2rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+.birthday-title {
+  font-size: 3rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  animation: titlePop 1s ease-out;
+}
+
+.birthday-subtitle {
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+  animation: subtitleSlide 1s ease-out;
+}
+
+.birthday-decorations {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.decoration {
+  font-size: 2rem;
+  animation: decorationBounce 2s infinite alternate;
+}
+
+@keyframes titlePop {
+  0% { transform: scale(0); opacity: 0; }
+  80% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes subtitleSlide {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes decorationBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+/* Add responsive styles */
+@media (max-width: 768px) {
+  .birthday-title {
+    font-size: 2rem;
+  }
+  .birthday-subtitle {
+    font-size: 1rem;
+  }
+  .decoration {
+    font-size: 1.5rem;
   }
 }
