@@ -1,9 +1,11 @@
-import { StrictMode } from "react";
+import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
+import AppRoutes from "./AppRoutes.jsx";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+import "./libraries/bootstrap/bootstrap.bundle.js";
+import "./libraries/bootstrap/bootstrap.css";
+import initLocalStorage from "./modules/localStore/init-local-store.js";
+import "./styles/defaults.css";
+
+initLocalStorage();
+createRoot(document.getElementById("root")).render(<AppRoutes />);
