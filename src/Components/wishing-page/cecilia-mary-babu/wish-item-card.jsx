@@ -4,7 +4,7 @@ function WishItemcard(props) {
   let { renderProfilePic, wish } = props;
 
   return (
-    <div className="wish-item-card">
+    <div className="wish-item-card h-100">
       <div className="wish-item-card-header">
         {renderProfilePic(wish.profilePic)}
         <h2 className="wish-item-card-title">{wish.creator}</h2>
