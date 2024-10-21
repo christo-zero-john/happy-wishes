@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import "../../../styles/cecilia-mary-babu.css";
-import saveWish from "../../../modules/localStore/saveWish";
+import saveWish from "../../../modules/firestore/save-wish.js";
 
-import { boyPics, girlPics } from "./profile-pic-imports";
 import {
   renderBoyPics,
   renderGirlPics,
   renderProfilePic,
 } from "./render-pics.jsx";
+
 import ConfirmModal from "./confirm-modal.jsx";
 import CreateWishModal from "./create-wish-modal.jsx";
 import RenderWishes from "./render-wishes.jsx";
+import { database } from "../../../modules/firestore/connectFirestore.js";
 
 function CeciliaMaryBabu() {
   const [wishData, setWishData] = useState({
@@ -22,7 +23,12 @@ function CeciliaMaryBabu() {
 
   useEffect(() => {
     console.log("Data updated: ", wishData);
-  }, [wishData]);
+    if (database) {
+      console.log("Successfully created database instance.");
+    } else {
+      console.log("Error connecting database");
+    }
+  });
 
   useEffect(() => {
     // Initialize Bootstrap modals
@@ -52,10 +58,8 @@ function CeciliaMaryBabu() {
     setWishData({ ...wishData, creator: creatorname });
   }
 
-  function saveAndPostWish() {
-    saveWish(wishData);
-    console.log("Wish posted:", wishData);
-    window.location.reload();
+  async function saveAndPostWish() {
+    await saveWish(wishData).then(() => window.location.reload());
   }
 
   function renderModalContent() {
@@ -123,9 +127,7 @@ function CeciliaMaryBabu() {
           className="wishes no-scrollbar overflow-auto no-scrollbar"
           id="wishes"
         >
-          <RenderWishes
-            renderProfilePic={renderProfilePic}
-          />
+          <RenderWishes renderProfilePic={renderProfilePic} />
         </div>
       </div>
 
