@@ -4,7 +4,7 @@ function renderBoyPics(updateProfilePic) {
   return boyPics.map((pic, index) => {
     return (
       <img
-        className="col-1 m-2 border rounded"
+        className="profile-pic m-2 border rounded"
         key={index}
         src={pic}
         alt="This will be your profile picture"
@@ -20,7 +20,7 @@ function renderGirlPics(updateProfilePic) {
   return girlPics.map((pic, index) => {
     return (
       <img
-        className="col-1 m-2 border rounded"
+        className="profile-pic m-2 border rounded"
         key={index}
         src={pic}
         alt="This will be your profile picture"
@@ -36,23 +36,23 @@ function renderProfilePic(picId) {
   if (picId !== "") {
     let parts = picId.split(",");
     if (parts[0] === "boy") {
-      console.log("Boy Pic Found");
+      // console.log("Boy Pic Found");
       let index = +parts[1];
       return (
         <img
           src={boyPics[index]}
           alt="Select one picture from below"
-          className=" d-inline col-1"
+          className="d-inline profile-pic"
         />
       );
     } else if (parts[0] === "girl") {
-      console.log("Girl Pic Found");
+      // console.log("Girl Pic Found");
       let index = +parts[1];
       return (
         <img
           src={girlPics[index]}
           alt="Select one picture from below"
-          className=" d-inline col-1"
+          className=" d-inline profile-pic"
         />
       );
     } else {
