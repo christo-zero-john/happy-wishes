@@ -7,5 +7,7 @@ import "./libraries/bootstrap/bootstrap.css";
 import initLocalStorage from "./modules/localStore/init-local-store.js";
 import "./styles/defaults.css";
 
+import "./libraries/animate-on-scroll/aos.css";
+
 initLocalStorage();
 createRoot(document.getElementById("root")).render(<AppRoutes />);
