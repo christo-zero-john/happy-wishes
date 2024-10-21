@@ -1,20 +1,9 @@
-.header {
-  background-color: aquamarine;
-  min-height: 50vh;
-  border-radius:10px 10px 0 0;
-  width: 90vw;
-}
-
-.imogy {
-  font-size: 100px;
-  display: inline;
-  animation: imogyDance 5s ease-in loop;
-}
-
-.wishes{
-    height: 100vh;
-    background-color: bisque;
-    border-radius:10px 10px 0 0;
+.wishes {
+  height: 100vh;
+  border-radius: 10px 10px 0 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @keyframes imogyDance {
@@ -26,7 +15,7 @@
     scale: 1.5;
     transform: rotateX(0deg);
   }
-  0% {
+  100% {
     scale: 1;
     transform: rotateX(30deg);
   }
