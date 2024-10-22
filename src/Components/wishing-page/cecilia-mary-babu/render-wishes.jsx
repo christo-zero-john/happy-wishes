@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FixedSizeList as List } from "react-window";
-import AutoSizer from "react-virtualized-auto-sizer";
 import WishItemcard from "./wish-item-card";
 import getAllWishes from "../../../modules/firestore/get-all-wishes";
 
@@ -21,25 +19,14 @@ function RenderWishes({ renderProfilePic, setMessage }) {
     });
   }, [setMessage]);
 
-  const Row = ({ index, style }) => (
-    <div style={style}>
-      <WishItemcard renderProfilePic={renderProfilePic} wish={wishes[index]} />
-    </div>
-  );
-
   return (
-    <AutoSizer>
-      {({ height, width }) => (
-        <List
-          height={height}
-          itemCount={wishes.length}
-          itemSize={200} // Adjust this value based on your card height
-          width={width}
-        >
-          {Row}
-        </List>
-      )}
-    </AutoSizer>
+    <div className="row">
+      {wishes.map((wish, index) => (
+        <div key={index} className="col-11 col-md-5 m-2 mx-auto">
+          <WishItemcard renderProfilePic={renderProfilePic} wish={wish} />
+        </div>
+      ))}
+    </div>
   );
 }
 
