@@ -52,8 +52,8 @@ function CeciliaMaryBabu() {
   useEffect(() => {
     // Initialize Bootstrap modals
     const initializeModals = () => {
-      if (typeof window !== 'undefined' && window.bootstrap) {
-        const modals = document.querySelectorAll('.modal');
+      if (typeof window !== "undefined" && window.bootstrap) {
+        const modals = document.querySelectorAll(".modal");
         modals.forEach((modalEl) => {
           new window.bootstrap.Modal(modalEl);
         });
@@ -61,14 +61,14 @@ function CeciliaMaryBabu() {
     };
 
     // Wait for Bootstrap to be loaded
-    if (document.readyState === 'complete') {
+    if (document.readyState === "complete") {
       initializeModals();
     } else {
-      window.addEventListener('load', initializeModals);
+      window.addEventListener("load", initializeModals);
     }
 
     return () => {
-      window.removeEventListener('load', initializeModals);
+      window.removeEventListener("load", initializeModals);
     };
   }, []);
 
@@ -201,7 +201,7 @@ function CeciliaMaryBabu() {
         data-bs-target="#wishModal"
         aria-label="Add a wish"
       >
-        <span className="wish-button-text">Wish Em!</span>
+        <span className="wish-button-text">Wish Her!</span>
         <span className="wish-button-icon">🎉</span>
       </button>
       {renderModal()}
