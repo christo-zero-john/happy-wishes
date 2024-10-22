@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../../../styles/cecilia-mary-babu.css";
 import saveWish from "../../../modules/firestore/save-wish.js";
 
@@ -32,9 +32,6 @@ function CeciliaMaryBabu() {
   const [isConfirmMode, setIsConfirmMode] = useState(false);
   const [message, setMessage] = useState("Connecting");
   const [backgroundImage, setBackgroundImage] = useState("");
-  const [scrollY, setScrollY] = useState(0);
-  const headerRef = useRef(null);
-  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
     const bgImg = getRandomBgImg();
@@ -42,7 +39,6 @@ function CeciliaMaryBabu() {
   }, []);
 
   useEffect(() => {
-    // console.log("Data updated: ", wishData);
     if (database) {
       console.log("Successfully created database instance.");
     } else {
@@ -72,21 +68,6 @@ function CeciliaMaryBabu() {
       window.removeEventListener("load", initializeModals);
     };
   }, []);
-
-  const handleScroll = useCallback(() => {
-    if (!isScrolling) {
-      window.requestAnimationFrame(() => {
-        setScrollY(window.scrollY);
-        setIsScrolling(false);
-      });
-      setIsScrolling(true);
-    }
-  }, [isScrolling]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
 
   function updateProfilePic(src) {
     setWishData({ ...wishData, profilePic: src });
@@ -164,42 +145,44 @@ function CeciliaMaryBabu() {
       <div id="homePageLoader">
         <HomePageLoading message={message} />
       </div>
-      <header className="birthday-header" ref={headerRef}>
-        <div className="header-content">
-          <h1 className="birthday-title" tabIndex="0">
-            Happy Birthday Cecilia!
-          </h1>
-          <p className="birthday-subtitle" tabIndex="0">
-            Celebrate with love and joy
-          </p>
-          <div className="birthday-decorations" aria-hidden="true">
-            {["🎉", "🎂", "🎈", "🎁", "🥳"].map((emoji, index) => (
-              <span
-                key={index}
-                className="decoration"
-                role="img"
-                aria-label={`Decoration ${index + 1}`}
-              >
-                {emoji}
-              </span>
-            ))}
+      <div className="content-container">
+        <header className="birthday-header">
+          <div className="header-content">
+            <h1 className="birthday-title" tabIndex="0">
+              Happy 19th Cecilia!
+            </h1>
+            <p className="birthday-subtitle" tabIndex="0">
+              October 23 | Celebrate this joyous day with your friends and family!
+            </p>
+            <div className="birthday-decorations" aria-hidden="true">
+              {["🎉", "🎂", "🎈", "🎁", "🥳"].map((emoji, index) => (
+                <span
+                  key={index}
+                  className="decoration"
+                  role="img"
+                  aria-label={`Decoration ${index + 1}`}
+                >
+                  {emoji}
+                </span>
+              ))}
+            </div>
           </div>
+        </header>
+        <div
+          className="wishes no-scrollbar overflow-auto"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+          id="wishes"
+        >
+          <RenderWishes
+            renderProfilePic={renderProfilePic}
+            setMessage={setMessage}
+          />
         </div>
-      </header>
-      <div
-        className="wishes no-scrollbar overflow-auto"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-        id="wishes"
-      >
-        <RenderWishes
-          renderProfilePic={renderProfilePic}
-          setMessage={setMessage}
-        />
       </div>
       <button
         className="wish-button"
