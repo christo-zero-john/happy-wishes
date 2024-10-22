@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
 import "../../../styles/cecilia-mary-babu.css";
 import saveWish from "../../../modules/firestore/save-wish.js";
 
@@ -51,10 +51,25 @@ function CeciliaMaryBabu() {
 
   useEffect(() => {
     // Initialize Bootstrap modals
-    const modals = document.querySelectorAll(".modal");
-    modals.forEach((modalEl) => {
-      new window.bootstrap.Modal(modalEl);
-    });
+    const initializeModals = () => {
+      if (typeof window !== 'undefined' && window.bootstrap) {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach((modalEl) => {
+          new window.bootstrap.Modal(modalEl);
+        });
+      }
+    };
+
+    // Wait for Bootstrap to be loaded
+    if (document.readyState === 'complete') {
+      initializeModals();
+    } else {
+      window.addEventListener('load', initializeModals);
+    }
+
+    return () => {
+      window.removeEventListener('load', initializeModals);
+    };
   }, []);
 
   useEffect(() => {
