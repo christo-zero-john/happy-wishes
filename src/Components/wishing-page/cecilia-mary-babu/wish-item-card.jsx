@@ -10,7 +10,7 @@ function WishItemcard(props) {
   }, []);
 
   return (
-    <div className="wish-item-card h-100" data-aos="fade-up">
+    <div className="wish-item-card h-100">
       <div className="wish-item-card-header">
         {renderProfilePic(wish.profilePic)}
         <h2 className="wish-item-card-title">{wish.creator}</h2>
