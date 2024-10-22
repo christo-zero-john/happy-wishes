@@ -152,7 +152,8 @@ function CeciliaMaryBabu() {
               Happy 19th Cecilia!
             </h1>
             <p className="birthday-subtitle" tabIndex="0">
-              October 23 | Celebrate this joyous day with your friends and family!
+              October 23 | Celebrate this joyous day with your friends and
+              family!
             </p>
             <div className="birthday-decorations" aria-hidden="true">
               {["🎉", "🎂", "🎈", "🎁", "🥳"].map((emoji, index) => (
@@ -172,9 +173,9 @@ function CeciliaMaryBabu() {
           className="wishes no-scrollbar overflow-auto"
           style={{
             backgroundImage: `url(${backgroundImage})`,
-            backgroundAttachment: 'fixed',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundAttachment: "fixed",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
           id="wishes"
         >
@@ -191,7 +192,7 @@ function CeciliaMaryBabu() {
         data-bs-target="#wishModal"
         aria-label="Add a wish"
       >
-        <span className="wish-button-text">Wish Her!</span>
+        <span className="wish-button-text">Sent Your Wishes</span>
         <span className="wish-button-icon">🎉</span>
       </button>
       {renderModal()}
