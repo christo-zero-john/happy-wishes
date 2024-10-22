@@ -14,14 +14,13 @@ function AppRoutes() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HappyWishes />} />
-          <Route path="/create/wishing" element={<NewWishingPage />} />
-          <Route path="/wishing/my-pages" element={<MyWishingPages />} />
-          <Route
-            path="/wishing/my-pages/edit/:id"
-            element={<EditWishingPage />}
-          />
+          {/* <Route path="/create/wishing" element={<NewWishingPage />} /> */}
+          {/* <Route path="/wishing/my-pages" element={<MyWishingPages />} /> */}
+          {/* <Route             // path="/wishing/my-pages/edit/:id"
+            // element={<EditWishingPage />}
+          // />*/}
           <Route path="/wishme/:pageId" element={<CeciliaMaryBabu />} />
-          <Route path="/hpl" element={<HomePageLoading message="Loading..."/>} />
+          {/* <Route path="/hpl" element={<HomePageLoading message="Loading..."/>} /> */}
         </Routes>
       </BrowserRouter>
     </div>
