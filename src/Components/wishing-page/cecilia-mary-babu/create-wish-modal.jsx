@@ -40,11 +40,12 @@ function CreateWishModal(props) {
       <div className="modal-body">
         <textarea
           type="text"
-          className="d-block mx-auto border border-2 m-2"
+          className="d-block mx-auto border border-2"
           placeholder="Type Your Wish"
           rows={8}
           value={wishData.text}
           onChange={(e) => updateWishText(e.target.value)}
+          style={{ width: '90%', maxWidth: '90%', marginBottom: '1rem' }}
         />
         <input
           type="text"
@@ -52,6 +53,7 @@ function CreateWishModal(props) {
           placeholder="Your Name"
           value={wishData.creator}
           onChange={(e) => updateWishCreator(e.target.value)}
+          style={{ width: '90%', maxWidth: '90%' }}
         />
         <div className="mb-3">
           <div className="d-flex justify-content-between align-items-center">
