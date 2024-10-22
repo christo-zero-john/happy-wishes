@@ -1,10 +1,10 @@
+import React, { useEffect, useState } from "react";
+import { FixedSizeList as List } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 import WishItemcard from "./wish-item-card";
 import getAllWishes from "../../../modules/firestore/get-all-wishes";
-import { useEffect, useState } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-function RenderWishes(props) {
-  let { renderProfilePic, setMessage } = props;
+function RenderWishes({ renderProfilePic, setMessage }) {
   const [wishes, setWishes] = useState([]);
 
   useEffect(() => {
@@ -21,20 +21,25 @@ function RenderWishes(props) {
     });
   }, [setMessage]);
 
+  const Row = ({ index, style }) => (
+    <div style={style}>
+      <WishItemcard renderProfilePic={renderProfilePic} wish={wishes[index]} />
+    </div>
+  );
+
   return (
-    <TransitionGroup className="row">
-      {wishes.map((wish, index) => (
-        <CSSTransition
-          key={wish.id || index}
-          timeout={500}
-          classNames="wish-item"
+    <AutoSizer>
+      {({ height, width }) => (
+        <List
+          height={height}
+          itemCount={wishes.length}
+          itemSize={200} // Adjust this value based on your card height
+          width={width}
         >
-          <div className="col-11 col-md-5 m-2 mx-auto">
-            <WishItemcard renderProfilePic={renderProfilePic} wish={wish} />
-          </div>
-        </CSSTransition>
-      ))}
-    </TransitionGroup>
+          {Row}
+        </List>
+      )}
+    </AutoSizer>
   );
 }
 
