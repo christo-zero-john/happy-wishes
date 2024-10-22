@@ -20,7 +20,7 @@ function AppRoutes() {
             // element={<EditWishingPage />}
           // />*/}
           <Route
-            path="/wishme/cecilia-mary-babu"
+            path="/wishme/cecilia-mary-babu/"
             element={<CeciliaMaryBabu />}
           />
           {/* <Route path="/hpl" element={<HomePageLoading message="Loading..."/>} /> */}
