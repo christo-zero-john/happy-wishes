@@ -98,6 +98,8 @@
   animation: float 4s ease-in-out infinite;
   border: 2px solid transparent;
   animation: rainbow-border 8s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .wish-item-card::before {
