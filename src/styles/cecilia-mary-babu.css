@@ -1,3 +1,9 @@
+/* Add this at the top of the file */
+.content-container {
+  position: relative;
+  z-index: 2;
+}
+
 .wishes {
   height: 100vh;
   border-radius: 10px 10px 0 0;
@@ -6,19 +12,19 @@
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  overflow: auto; /* Changed from 'hidden' to allow scrolling */
-  padding-top: 150px; /* Adjust this value based on your header height */
+  overflow: auto;
+  padding: 20px; /* Add padding here */
 }
 
 .wishes::before {
   content: "";
-  position: fixed; /* Changed from 'absolute' to 'fixed' */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: #0000004d; /* Dark shade overlay */
-  backdrop-filter: blur(5px); /* Small blur effect */
+  background: #0000004d;
+  backdrop-filter: blur(5px);
   z-index: 1;
 }
 
@@ -42,81 +48,114 @@
   }
 }
 
-.birthday-header-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000; /* Ensure it's above everything */
-}
-
 .birthday-header {
   background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
-  backdrop-filter: blur(100px);
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   text-align: center;
-  position: relative; /* Change from relative to fixed */
-  top: 0;
-  left: 0;
-  right: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease-out;
-  z-index: 1001; /* Increase z-index to be above the blur layer */
+  z-index: 3; /* Increase the z-index to bring it above the blur layer */
+}
+
+.birthday-header::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  animation: shimmer 10s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .header-content {
   position: relative;
-  z-index: 1002; /* Ensure header content is above the header background */
+  z-index: 1;
 }
 
 .birthday-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #ffffff;
-  text-shadow: 2px 2px 4px #0000004d;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 0.5rem;
-  font-weight: bold;
-  animation: titlePop 1s ease-out;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .birthday-subtitle {
-  font-size: 1.5rem;
+  font-size: 1.1rem; /* Slightly reduced from 1.2rem */
   color: #ffffff;
-  text-shadow: 1px 1px 2px #00000033;
-  margin-bottom: 1rem;
-  animation: subtitleSlide 1s ease-out;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+  max-width: 80%; /* Limit width to prevent overflow on smaller screens */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .birthday-decorations {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .decoration {
   font-size: 2rem;
-  animation: decorationBounce 2s infinite alternate;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  margin: 0 0.5rem;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
 }
 
-.decoration:hover {
-  transform: scale(1.2);
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-@keyframes titlePop {
-  0% { transform: scale(0); opacity: 0; }
-  80% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); }
+.decoration:nth-child(2n) {
+  animation-delay: -1.5s;
 }
 
-@keyframes subtitleSlide {
-  0% { transform: translateY(20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+.decoration:nth-child(3n) {
+  animation-delay: -0.5s;
 }
 
-@keyframes decorationBounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
+@media (max-width: 768px) {
+  .birthday-title {
+    font-size: 2rem;
+  }
+
+  .birthday-subtitle {
+    font-size: 0.9rem; /* Further reduced for mobile screens */
+  }
+
+  .decoration {
+    font-size: 1.5rem;
+  }
 }
 
 /* Improve color contrast
@@ -153,7 +192,7 @@
     font-size: 2rem;
   }
   .birthday-subtitle {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Further reduced for mobile screens */
   }
   .decoration {
     font-size: 1.5rem;
@@ -179,7 +218,7 @@
 }
 
 .wish-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -2px;
   left: -2px;
@@ -274,6 +313,7 @@
 /* Form elements within the modal */
 .modal-body textarea,
 .modal-body input[type="text"] {
+  width: 90%;
   background-color: rgba(255, 255, 255, 0.9);
   border: none;
   border-radius: 10px;
@@ -323,6 +363,8 @@
   border-radius: 10px;
   overflow: hidden;
   transition: all 0.3s ease;
+  width: 50%; /* Reduce the size to half */
+  margin: 0 auto; /* Center the image */
 }
 
 .modal-body .border:hover {
@@ -336,8 +378,28 @@
 
 .modal-body img {
   transition: all 0.3s ease;
+  width: 100%; /* Make sure the image fills its container */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .modal-body img:hover {
   transform: scale(1.1);
+}
+
+/* Profile picture selection */
+.modal-body .row .col-4 {
+  padding: 5px;
+}
+
+.modal-body .row .col-4 img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.modal-body .row .col-4 img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
