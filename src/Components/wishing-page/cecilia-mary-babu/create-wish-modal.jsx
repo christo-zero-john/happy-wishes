@@ -13,6 +13,7 @@ function CreateWishModal(props) {
   } = props;
 
   const [previewPic, setPreviewPic] = useState(null);
+  const [showError, setShowError] = useState(false);
 
   const boyPics = renderBoyPics();
   const girlPics = renderGirlPics();
@@ -20,6 +21,15 @@ function CreateWishModal(props) {
   const handlePicClick = (pic) => {
     updateProfilePic(pic);
     setPreviewPic(pic);
+    setShowError(false);
+  };
+
+  const handleSendWish = () => {
+    if (!previewPic) {
+      setShowError(true);
+    } else {
+      setIsConfirmMode(true);
+    }
   };
 
   console.log('Boy Pics:', boyPics);
@@ -44,9 +54,24 @@ function CreateWishModal(props) {
           onChange={(e) => updateWishCreator(e.target.value)}
         />
         <div className="mb-3">
-          <label htmlFor="profilePic" className="form-label text-primary">
-            Choose a profile picture
-          </label>
+          <div className="d-flex justify-content-between align-items-center">
+            <label htmlFor="profilePic" className="form-label text-primary">
+              Choose a profile picture
+            </label>
+            {previewPic && (
+              <div className="text-center">
+                <img
+                  src={previewPic}
+                  alt="Selected profile"
+                  className="img-fluid rounded"
+                  style={{ maxWidth: '100px', maxHeight: '100px' }}
+                />
+              </div>
+            )}
+          </div>
+          {showError && (
+            <p className="text-danger">Please select a profile picture.</p>
+          )}
           <div className="row">
             {boyPics.map((pic, index) => (
               <div key={`boy-${index}`} className="col-3 mb-3">
@@ -80,17 +105,6 @@ function CreateWishModal(props) {
             ))}
           </div>
         </div>
-        {previewPic && (
-          <div className="mt-3 text-center">
-            <h5>Selected Profile Picture:</h5>
-            <img
-              src={previewPic}
-              alt="Selected profile"
-              className="img-fluid rounded"
-              style={{ maxWidth: '150px' }}
-            />
-          </div>
-        )}
       </div>
       <div className="modal-footer">
         <button
@@ -103,7 +117,7 @@ function CreateWishModal(props) {
         <button
           type="button"
           className="btn btn-success"
-          onClick={() => setIsConfirmMode(true)}
+          onClick={handleSendWish}
         >
           Send Wish
         </button>
