@@ -19,7 +19,10 @@ function AppRoutes() {
           {/* <Route             // path="/wishing/my-pages/edit/:id"
             // element={<EditWishingPage />}
           // />*/}
-          <Route path="/wishme/:pageId" element={<CeciliaMaryBabu />} />
+          <Route
+            path="/wishme/cecilia-mary-babu"
+            element={<CeciliaMaryBabu />}
+          />
           {/* <Route path="/hpl" element={<HomePageLoading message="Loading..."/>} /> */}
         </Routes>
       </BrowserRouter>
