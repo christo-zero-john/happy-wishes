@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import "../../../styles/cecilia-mary-babu.css";
 import saveWish from "../../../modules/firestore/save-wish.js";
 
@@ -34,6 +34,7 @@ function CeciliaMaryBabu() {
   const [backgroundImage, setBackgroundImage] = useState("");
   const [scrollY, setScrollY] = useState(0);
   const headerRef = useRef(null);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
     const bgImg = getRandomBgImg();
@@ -72,16 +73,20 @@ function CeciliaMaryBabu() {
     };
   }, []);
 
+  const handleScroll = useCallback(() => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        setScrollY(window.scrollY);
+        setIsScrolling(false);
+      });
+      setIsScrolling(true);
+    }
+  }, [isScrolling]);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-      if (headerRef.current) {
-        headerRef.current.style.transform = `translateY(${scrollY * 0.2}px)`;
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrollY]);
+  }, [handleScroll]);
 
   function updateProfilePic(src) {
     setWishData({ ...wishData, profilePic: src });
@@ -182,10 +187,12 @@ function CeciliaMaryBabu() {
         </div>
       </header>
       <div
-        className="wishes no-scrollbar overflow-auto no-scrollbar"
+        className="wishes no-scrollbar overflow-auto"
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundPositionY: `${scrollY * 0.3}px`,
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
         id="wishes"
       >
