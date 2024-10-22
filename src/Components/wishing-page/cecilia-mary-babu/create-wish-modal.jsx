@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function CreateWishModal(props) {
   let {
@@ -12,8 +12,15 @@ function CreateWishModal(props) {
     setIsConfirmMode,
   } = props;
 
+  const [previewPic, setPreviewPic] = useState(null);
+
   const boyPics = renderBoyPics();
   const girlPics = renderGirlPics();
+
+  const handlePicClick = (pic) => {
+    updateProfilePic(pic);
+    setPreviewPic(pic);
+  };
 
   console.log('Boy Pics:', boyPics);
   console.log('Girl Pics:', girlPics);
@@ -47,7 +54,7 @@ function CreateWishModal(props) {
                   src={pic}
                   alt={`Boy profile ${index + 1}`}
                   className="img-fluid rounded cursor-pointer"
-                  onClick={() => updateProfilePic(pic)}
+                  onClick={() => handlePicClick(pic)}
                   onError={(e) => {
                     console.error(`Failed to load image: ${pic}`);
                     e.target.onerror = null;
@@ -62,7 +69,7 @@ function CreateWishModal(props) {
                   src={pic}
                   alt={`Girl profile ${index + 1}`}
                   className="img-fluid rounded cursor-pointer"
-                  onClick={() => updateProfilePic(pic)}
+                  onClick={() => handlePicClick(pic)}
                   onError={(e) => {
                     console.error(`Failed to load image: ${pic}`);
                     e.target.onerror = null;
@@ -73,6 +80,17 @@ function CreateWishModal(props) {
             ))}
           </div>
         </div>
+        {previewPic && (
+          <div className="mt-3 text-center">
+            <h5>Selected Profile Picture:</h5>
+            <img
+              src={previewPic}
+              alt="Selected profile"
+              className="img-fluid rounded"
+              style={{ maxWidth: '150px' }}
+            />
+          </div>
+        )}
       </div>
       <div className="modal-footer">
         <button
