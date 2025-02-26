@@ -1,13 +1,4 @@
-import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import AppRoutes from "./AppRoutes.jsx";
+import App from "./app.jsx";
 
-import "./libraries/bootstrap/bootstrap.bundle.js";
-import "./libraries/bootstrap/bootstrap.css";
-import initLocalStorage from "./modules/localStore/init-local-store.js";
-import "./styles/defaults.css";
-
-import "./libraries/animate-on-scroll/aos.css";
-
-initLocalStorage();
-createRoot(document.getElementById("root")).render(<AppRoutes />);
+createRoot(document.getElementById("root")).render(<App />);
